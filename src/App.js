@@ -29,7 +29,7 @@ export default function App() {
     800
   );
   const background = useArray(
-    ["red", "green", "darkgray", "blue", "orange", "black", "yellow"],
+    ["red", "green", "blue", "orange", "black", "yellow"],
     2000
   );
 
@@ -92,7 +92,7 @@ const Wrapper = styled.div({
   alignItems: "center",
   width: "100%",
   height: "100vh",
-  transition: "150ms ease all",
+  transition: "1500ms ease all",
   textAlign: "center",
   overflow: "hidden",
 
