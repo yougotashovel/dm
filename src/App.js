@@ -3,6 +3,10 @@ import "./styles.css";
 import styled from "@emotion/styled";
 import { useState, useEffect } from "react";
 
+const randomFromArray = (array) => {
+  return array[getRandomInt(0, array.length - 1)];
+};
+
 const useArray = (array, speed = 200) => {
   const [index, setIndex] = useState(0);
 
@@ -72,7 +76,43 @@ export default function App() {
       <div>
         <h1 style={{ fontFamily, textTransform, fontSize, color }}>
           <span className="transform" style={{ transform }}>
-            Dan McHugh
+            {"Dan McHugh".split("").map((letter, i) => {
+              const top = randomFromArray([
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "-0.05em",
+                "0.05em",
+                "-0.1em",
+                "0.1em"
+              ]);
+              return (
+                <span key={i} style={{ position: "relative", top }}>
+                  {letter}
+                </span>
+              );
+            })}
           </span>
         </h1>
         <Button href="mailto:hi@danmchugh.co.uk">
