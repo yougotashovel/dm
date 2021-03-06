@@ -25,7 +25,7 @@ export default function App() {
     200
   );
   const fontSize = useArray(
-    ["2em", "2em", "2em", "2em", "2em", "1em", "3em", "2.5em"],
+    ["2em", "2em", "2em", "2em", "2em", "1em", "3em", "2.5em", "6em"],
     800
   );
   const background = useArray(
