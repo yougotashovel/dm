@@ -20,34 +20,50 @@ function getRandomInt(min, max) {
 }
 
 export default function App() {
-  const font = useArray([
-    "Helvetica",
-    "Arial",
-    "Wingdings",
-    "Times",
-    "Courier New",
-    "Comic Sans"
-  ]);
+  const font = useArray(
+    ["Helvetica", "Arial", "Wingdings", "Times", "Courier New", "Comic Sans"],
+    200
+  );
   const bgColor = useArray(
     ["red", "green", "gray", "blue", "orange", "black", "yellow"],
-    300
+    400
   );
 
-  const textType = useArray([
-    "lowercase",
-    "uppercase",
-    "capitalize",
-    "default"
-  ]);
+  const textType = useArray(
+    ["lowercase", "lowercase", "uppercase", "capitalize", "default"],
+    100
+  );
+
+  const transformer = useArray(
+    [
+      "none",
+      "perspective(75em) rotateX(18deg)",
+      "perspective(750em) rotateX(-18deg)",
+      "rotate3d(0,0,0,0deg) rotate(0deg)",
+      "rotate3d(0,0,0,0deg) rotate(-5deg)",
+      "perspective(-75em) rotateX(180deg)",
+      "perspective(-75em) rotateX(-180deg)",
+      "perspective(1000px) rotateX(4deg) rotateY(-16deg) rotateZ(4deg)",
+      "perspective(600px) rotateX(20deg) rotateY(-16deg) rotateZ(-4deg)",
+      "perspective(-1000px) rotateX(-10deg) rotateY(50deg) rotateZ(6deg)"
+    ],
+    500
+  );
 
   return (
     <Wrapper style={{ background: bgColor }}>
       <div>
         <h1 style={{ fontFamily: font, textTransform: textType }}>
-          Dan McHugh
+          <span className="transform" style={{ transform: transformer }}>
+            Dan McHugh
+          </span>
         </h1>
+        <Button href="mailto:hi@danmchugh.co.uk">
+          {"talk to me".split("").map((letter, i) => (
+            <span key={i}>{letter}</span>
+          ))}
+        </Button>
       </div>
-      <Button href="mailto:hi@danmchugh.co.uk">Talk • to • me</Button>
     </Wrapper>
   );
 }
@@ -57,37 +73,65 @@ const Wrapper = styled.div({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  width: "100%",
   height: "100vh",
   transition: "100ms ease all",
   textAlign: "center",
 
+  "> div": {
+    position: "relative",
+    height: "300px",
+    width: "100%",
+    maxWidth: "800px",
+    textAlign: "center"
+  },
+
+  ".transform": {
+    display: "inline-block",
+    transition: "10ms ease all",
+    transformOrigin: "center"
+  },
+
   h1: {
-    padding: 0,
-    margin: 0
+    paddingTop: "2em"
   }
 });
 
 const Button = styled.a({
   display: "block",
-  position: "fixed",
-  bottom: "10em",
+  margin: "0 auto",
+  width: "100%",
+  position: "absolute",
+  bottom: "2em",
   textAlign: "center",
   textTransform: "uppercase",
-  border: "1px solid black",
-  padding: "1.5em 2em",
-  borderRadius: "50px",
-  textDecoration: "none",
-  color: "black",
-  background: "black",
-  color: "white",
-  letterSpacing: "3px",
-  transition: "10ms bounce all",
   transform: "scale(1)",
+  textDecoration: "none",
 
-  "&:hover, &:focus": {
-    background: "transparent",
-    borderColor: "white",
-    // padding: '2em 4em',
-    transform: "scale(2)"
+  span: {
+    transition: "10ms bounce all",
+    border: "1px solid black",
+    padding: "1em 0.25em",
+    borderRadius: "0px",
+    background: "black",
+    color: "white",
+    letterSpacing: "3px",
+
+    "&:first-of-type": {
+      borderRadius: "60px 0 0 60px",
+      padding: "1em 0.25em 1em 2em"
+    },
+
+    "&:last-of-type": {
+      borderRadius: "0 60px 60px 0",
+      padding: "1em 2em 1em 0.25em"
+    },
+
+    "&:hover, &:focus": {
+      background: "transparent",
+      borderColor: "white"
+      // padding: '2em 4em',
+      // transform: "scale(2)"
+    }
   }
 });
