@@ -20,21 +20,25 @@ function getRandomInt(min, max) {
 }
 
 export default function App() {
-  const font = useArray(
+  const fontFamily = useArray(
     ["Helvetica", "Arial", "Wingdings", "Times", "Courier New", "Comic Sans"],
     200
   );
-  const bgColor = useArray(
+  const fontSize = useArray(
+    ["2em", "2em", "2em", "2em", "2em", "1em", "3em", "2.5em"],
+    800
+  );
+  const background = useArray(
     ["red", "green", "gray", "blue", "orange", "black", "yellow"],
     400
   );
 
-  const textType = useArray(
+  const textTransform = useArray(
     ["lowercase", "lowercase", "uppercase", "capitalize", "default"],
     100
   );
 
-  const transformer = useArray(
+  const transform = useArray(
     [
       "none",
       "perspective(75em) rotateX(18deg)",
@@ -51,10 +55,10 @@ export default function App() {
   );
 
   return (
-    <Wrapper style={{ background: bgColor }}>
+    <Wrapper style={{ background }}>
       <div>
-        <h1 style={{ fontFamily: font, textTransform: textType }}>
-          <span className="transform" style={{ transform: transformer }}>
+        <h1 style={{ fontFamily, textTransform, fontSize }}>
+          <span className="transform" style={{ transform }}>
             Dan McHugh
           </span>
         </h1>
@@ -77,13 +81,17 @@ const Wrapper = styled.div({
   height: "100vh",
   transition: "100ms ease all",
   textAlign: "center",
+  overflow: "hidden",
 
   "> div": {
     position: "relative",
     height: "300px",
     width: "100%",
     maxWidth: "800px",
-    textAlign: "center"
+    textAlign: "center",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
 
   ".transform": {
@@ -93,7 +101,7 @@ const Wrapper = styled.div({
   },
 
   h1: {
-    paddingTop: "2em"
+    marginTop: "-100px"
   }
 });
 
