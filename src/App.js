@@ -166,8 +166,13 @@ const Button = styled.a({
   bottom: "2em",
   textAlign: "center",
   textTransform: "uppercase",
-  transform: "scale(1)",
   textDecoration: "none",
+
+  transition: "100ms ease all",
+  transform: "perspective(1000px) rotateX(-4deg) rotateY(0deg) rotateZ(0deg)",
+  "&:hover, &:focus": {
+    transform: "perspective(1000px) rotateX(4deg) rotateY(-16deg) rotateZ(4deg)"
+  },
 
   span: {
     transition: "10ms bounce all",
