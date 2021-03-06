@@ -25,12 +25,12 @@ export default function App() {
     200
   );
   const fontSize = useArray(
-    ["2em", "2em", "2em", "2em", "2em", "1em", "3em", "2.5em", "6em"],
+    ["2em", "2em", "2em", "2em", "2em", "1em", "3em", "2.5em", "6em", "10em"],
     800
   );
   const background = useArray(
-    ["red", "green", "gray", "blue", "orange", "black", "yellow"],
-    400
+    ["red", "green", "darkgray", "blue", "orange", "black", "yellow"],
+    2000
   );
 
   const textTransform = useArray(
@@ -54,10 +54,23 @@ export default function App() {
     500
   );
 
+  const colors = useArray([
+    "black",
+    "white",
+    "rgba(255,255,255,0.25)",
+    "rgba(0,0,0,0.25)"
+  ]);
+  const color =
+    background === "black"
+      ? "white"
+      : background === "white"
+      ? "black"
+      : colors;
+
   return (
     <Wrapper style={{ background }}>
       <div>
-        <h1 style={{ fontFamily, textTransform, fontSize }}>
+        <h1 style={{ fontFamily, textTransform, fontSize, color }}>
           <span className="transform" style={{ transform }}>
             Dan McHugh
           </span>
@@ -79,7 +92,7 @@ const Wrapper = styled.div({
   alignItems: "center",
   width: "100%",
   height: "100vh",
-  transition: "100ms ease all",
+  transition: "150ms ease all",
   textAlign: "center",
   overflow: "hidden",
 
@@ -101,7 +114,7 @@ const Wrapper = styled.div({
   },
 
   h1: {
-    marginTop: "-100px"
+    marginTop: "-80px"
   }
 });
 
@@ -138,8 +151,6 @@ const Button = styled.a({
     "&:hover, &:focus": {
       background: "transparent",
       borderColor: "white"
-      // padding: '2em 4em',
-      // transform: "scale(2)"
     }
   }
 });
