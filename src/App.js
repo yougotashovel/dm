@@ -16,7 +16,7 @@ const useArray = (array, speed = 200, hover = false) => {
     if (!hover) {
       setTimeout(() => {
         setIndex(index < array.length ? index + 1 : 0);
-      }, getRandomInt(speed * 0.5 * 3, speed * 2 * 3));
+      }, getRandomInt(speed * 0.5, speed * 2));
     }
   }, [index, hover]);
 
@@ -44,7 +44,15 @@ export default function App() {
   const background = useArray(
     // ["red", "green", "blue", "orange", "black", "yellow"],
     // ["#E4FF1A", "#FFB800", "#06D6A0", "#F42C04", "#00A1E4", "#000000" ],
-    ["#f9c80e", "#f86624", "#ea3546", "#662e9b", "#43bccd", "#119822"],
+    // ["#f9c80e", "#f86624", "#ea3546", "#662e9b", "#43bccd", "#119822"],
+    [
+      "rgb(249, 200, 14)",
+      "rgb(248, 102, 36)",
+      "rgb(234, 53, 70)",
+      "rgb(102, 46, 155)",
+      "rgb(67, 188, 205)",
+      "rgb(17, 152, 34)"
+    ],
     2000,
     hover
   );
@@ -97,13 +105,15 @@ export default function App() {
       {/* <header style={{ background: colorSimple[color] }} /> */}
       {/* <footer style={{ background: colorSimple[color] }} /> */}
       <div>
-        <Globe />
+        <div style={{ opacity: hover ? 1 : 0, transition: "500ms ease all" }}>
+          <Globe color={color} />
+        </div>
         <h1
           style={{ fontFamily, textTransform, fontSize, color }}
           className={hover && "hover"}
         >
           <span className="transform" style={{ transform }}>
-            {"lemons".split("").map((letter, i) => {
+            {"Dan McHugh".split("").map((letter, i) => {
               const top = randomFromArray([
                 ...Array(20).fill("0"),
                 "-0.05em",
@@ -144,7 +154,7 @@ const Wrapper = styled.div({
   alignItems: "center",
   width: "100%",
   height: "100vh",
-  transition: "100ms ease all",
+  transition: "2000ms ease all",
   textAlign: "center",
   overflow: "hidden",
 
