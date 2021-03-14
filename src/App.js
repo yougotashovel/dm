@@ -29,7 +29,7 @@ export default function App() {
     200
   );
   const fontSize = useArray(
-    ["2em", "2em", "2em", "2em", "2em", "1em", "3em", "2.5em", "6em", "10em"],
+    ["3em", "3em", "3em", "3em", "3em", "1em", "2em", "3.5em", "6em", "10em"],
     800
   );
   const background = useArray(
@@ -78,30 +78,7 @@ export default function App() {
           <span className="transform" style={{ transform }}>
             {"Dan McHugh".split("").map((letter, i) => {
               const top = randomFromArray([
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
+                ...Array(20).fill("0"),
                 "-0.05em",
                 "0.05em",
                 "-0.1em",
@@ -154,7 +131,7 @@ const Wrapper = styled.div({
   },
 
   h1: {
-    marginTop: "-80px"
+    marginTop: "-40px"
   }
 });
 
@@ -163,7 +140,7 @@ const Button = styled.a({
   margin: "0 auto",
   width: "100%",
   position: "absolute",
-  bottom: "2em",
+  bottom: "0em",
   textAlign: "center",
   textTransform: "uppercase",
   textDecoration: "none",
