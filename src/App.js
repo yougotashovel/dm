@@ -14,9 +14,9 @@ const useArray = (array, speed = 200, hover = false) => {
 
   useEffect(() => {
     if (!hover) {
-      // setTimeout(() => {
-      //   setIndex(index < array.length ? index + 1 : 0);
-      // }, getRandomInt(speed * 0.5, speed * 2));
+      setTimeout(() => {
+        setIndex(index < array.length ? index + 1 : 0);
+      }, getRandomInt(speed * 0.5, speed * 2));
     }
   }, [index, hover]);
 
