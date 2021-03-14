@@ -12,7 +12,7 @@ const useArray = (array, speed = 200) => {
 
   useEffect(() => {
     setTimeout(() => {
-      setIndex(index <= array.length ? index + 1 : 0);
+      setIndex(index < array.length ? index + 1 : 0);
     }, getRandomInt(speed * 0.5, speed * 2));
   }, [index]);
 
@@ -33,7 +33,9 @@ export default function App() {
     800
   );
   const background = useArray(
-    ["red", "green", "blue", "orange", "black", "yellow"],
+    // ["red", "green", "blue", "orange", "black", "yellow"],
+    // ["#E4FF1A", "#FFB800", "#06D6A0", "#F42C04", "#00A1E4", "#000000" ],
+    ["#f9c80e", "#f86624", "#ea3546", "#662e9b", "#43bccd", "#065143"],
     2000
   );
 
@@ -71,8 +73,17 @@ export default function App() {
       ? "black"
       : colors;
 
+  const colorSimple = {
+    black: "black",
+    white: "white",
+    "rgba(255,255,255,0.25)": "white",
+    "rgba(0,0,0,0.25)": "black"
+  };
+
   return (
     <Wrapper style={{ background }}>
+      <header style={{ background: colorSimple[color] }} />
+      <footer style={{ background: colorSimple[color] }} />
       <div>
         <h1 style={{ fontFamily, textTransform, fontSize, color }}>
           <span className="transform" style={{ transform }}>
@@ -94,7 +105,7 @@ export default function App() {
         </h1>
         <Button href="mailto:hi@danmchugh.co.uk">
           {"talk to me".split("").map((letter, i) => (
-            <span key={i} style={{ color }}>
+            <span key={i} style={{ color: colorSimple[color] }}>
               {letter}
             </span>
           ))}
@@ -111,7 +122,7 @@ const Wrapper = styled.div({
   alignItems: "center",
   width: "100%",
   height: "100vh",
-  transition: "1500ms ease all",
+  transition: "100ms ease all",
   textAlign: "center",
   overflow: "hidden",
 
@@ -130,6 +141,22 @@ const Wrapper = styled.div({
     display: "inline-block",
     transition: "10ms ease all",
     transformOrigin: "center"
+  },
+
+  header: {
+    position: "absolute",
+    top: 0,
+    width: "100%",
+    height: "10%",
+    background: "black"
+  },
+
+  footer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: "10%",
+    background: "black"
   },
 
   h1: {
@@ -154,7 +181,7 @@ const Button = styled.a({
   },
 
   span: {
-    transition: "10ms bounce all",
+    transition: "10ms bounce border",
     border: "1px solid transparent",
     padding: "1em 0.25em",
     borderRadius: "0px",
