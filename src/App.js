@@ -82,8 +82,8 @@ export default function App() {
 
   return (
     <Wrapper style={{ background }}>
-      <header style={{ background: colorSimple[color] }} />
-      <footer style={{ background: colorSimple[color] }} />
+      {/* <header style={{ background: colorSimple[color] }} /> */}
+      {/* <footer style={{ background: colorSimple[color] }} /> */}
       <div>
         <h1 style={{ fontFamily, textTransform, fontSize, color }}>
           <span className="transform" style={{ transform }}>
@@ -105,7 +105,7 @@ export default function App() {
         </h1>
         <Button href="mailto:hi@danmchugh.co.uk">
           {"talk to me".split("").map((letter, i) => (
-            <span key={i} style={{ color: colorSimple[color] }}>
+            <span key={i} style={{ color }}>
               {letter}
             </span>
           ))}
