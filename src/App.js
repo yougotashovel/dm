@@ -16,7 +16,7 @@ const useArray = (array, speed = 200, hover = false) => {
     if (!hover) {
       setTimeout(() => {
         setIndex(index < array.length ? index + 1 : 0);
-      }, getRandomInt(speed * 0.5, speed * 2));
+      }, getRandomInt(speed * 0.5 * 3, speed * 2 * 3));
     }
   }, [index, hover]);
 
@@ -103,15 +103,15 @@ export default function App() {
           className={hover && "hover"}
         >
           <span className="transform" style={{ transform }}>
-            {"Dan McHugh".split("").map((letter, i) => {
+            {"lemons".split("").map((letter, i) => {
               const top = randomFromArray([
                 ...Array(20).fill("0"),
                 "-0.05em",
                 "0.05em",
                 "-0.1em",
                 "0.1em",
-                "1em",
-                "-1em"
+                "0.5em",
+                "-0.5em"
               ]);
               return (
                 <span key={i} style={{ position: "relative", top }}>
@@ -182,7 +182,7 @@ const Wrapper = styled.div({
   },
 
   h1: {
-    marginTop: "-40px"
+    marginTop: "20px"
   },
 
   ".hover": {

@@ -13,7 +13,7 @@ const Globe = ({ color = "orange" }) => {
     <mesh
       ref={mesh}
       visible
-      scale={[1, 1, 1]}
+      scale={[1, 1.1, 1]}
       // onClick={(e) => setActive(!active)}
       // onPointerOver={(e) => setHover(true)}
       // onPointerOut={(e) => setHover(false)}
