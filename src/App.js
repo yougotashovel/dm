@@ -3,6 +3,8 @@ import "./styles.css";
 import styled from "@emotion/styled";
 import { useState, useEffect } from "react";
 
+import Globe from "./Globe";
+
 const randomFromArray = (array) => {
   return array[getRandomInt(0, array.length - 1)];
 };
@@ -12,9 +14,9 @@ const useArray = (array, speed = 200, hover = false) => {
 
   useEffect(() => {
     if (!hover) {
-      setTimeout(() => {
-        setIndex(index < array.length ? index + 1 : 0);
-      }, getRandomInt(speed * 0.5, speed * 2));
+      // setTimeout(() => {
+      //   setIndex(index < array.length ? index + 1 : 0);
+      // }, getRandomInt(speed * 0.5, speed * 2));
     }
   }, [index, hover]);
 
@@ -95,6 +97,7 @@ export default function App() {
       {/* <header style={{ background: colorSimple[color] }} /> */}
       {/* <footer style={{ background: colorSimple[color] }} /> */}
       <div>
+        <Globe />
         <h1
           style={{ fontFamily, textTransform, fontSize, color }}
           className={hover && "hover"}
