@@ -7,14 +7,16 @@ const randomFromArray = (array) => {
   return array[getRandomInt(0, array.length - 1)];
 };
 
-const useArray = (array, speed = 200) => {
+const useArray = (array, speed = 200, hover = false) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIndex(index < array.length ? index + 1 : 0);
-    }, getRandomInt(speed * 0.5, speed * 2));
-  }, [index]);
+    if (!hover) {
+      setTimeout(() => {
+        setIndex(index < array.length ? index + 1 : 0);
+      }, getRandomInt(speed * 0.5, speed * 2));
+    }
+  }, [index, hover]);
 
   return array[index];
 };
@@ -24,24 +26,31 @@ function getRandomInt(min, max) {
 }
 
 export default function App() {
+  const [hover, setHover] = useState(false);
+  const toggle = () => setHover(!hover);
+
   const fontFamily = useArray(
     ["Helvetica", "Arial", "Wingdings", "Times", "Courier New", "Comic Sans"],
-    200
+    200,
+    hover
   );
   const fontSize = useArray(
     ["3em", "3em", "3em", "3em", "3em", "1em", "2em", "3.5em", "6em", "10em"],
-    800
+    800,
+    hover
   );
   const background = useArray(
     // ["red", "green", "blue", "orange", "black", "yellow"],
     // ["#E4FF1A", "#FFB800", "#06D6A0", "#F42C04", "#00A1E4", "#000000" ],
-    ["#f9c80e", "#f86624", "#ea3546", "#662e9b", "#43bccd", "#065143"],
-    2000
+    ["#f9c80e", "#f86624", "#ea3546", "#662e9b", "#43bccd", "#119822"],
+    2000,
+    hover
   );
 
   const textTransform = useArray(
     ["lowercase", "lowercase", "uppercase", "capitalize", "default"],
-    100
+    100,
+    hover
   );
 
   const transform = useArray(
@@ -57,7 +66,8 @@ export default function App() {
       "perspective(600px) rotateX(20deg) rotateY(-16deg) rotateZ(-4deg)",
       "perspective(-1000px) rotateX(-10deg) rotateY(50deg) rotateZ(6deg)"
     ],
-    500
+    500,
+    hover
   );
 
   const colors = useArray([
@@ -85,7 +95,10 @@ export default function App() {
       {/* <header style={{ background: colorSimple[color] }} /> */}
       {/* <footer style={{ background: colorSimple[color] }} /> */}
       <div>
-        <h1 style={{ fontFamily, textTransform, fontSize, color }}>
+        <h1
+          style={{ fontFamily, textTransform, fontSize, color }}
+          className={hover && "hover"}
+        >
           <span className="transform" style={{ transform }}>
             {"Dan McHugh".split("").map((letter, i) => {
               const top = randomFromArray([
@@ -105,7 +118,11 @@ export default function App() {
             })}
           </span>
         </h1>
-        <Button href="mailto:hi@danmchugh.co.uk">
+        <Button
+          href="mailto:hi@danmchugh.co.uk"
+          onMouseEnter={toggle}
+          onMouseLeave={toggle}
+        >
           {"talk to me".split("").map((letter, i) => (
             <span key={i} style={{}}>
               {letter}
@@ -163,6 +180,16 @@ const Wrapper = styled.div({
 
   h1: {
     marginTop: "-40px"
+  },
+
+  ".hover": {
+    "*": {
+      // transition: '10000ms ease transform !important, 1000ms ease top !important',
+      transition: "0ms ease transform, 10000ms ease top !important",
+      transform: "rotate(180deg) scale(4) !important",
+      opacity: 0.25,
+      color: "rgba(0,0,0,0.5)"
+    }
   }
 });
 
