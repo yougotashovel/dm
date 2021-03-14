@@ -94,7 +94,9 @@ export default function App() {
         </h1>
         <Button href="mailto:hi@danmchugh.co.uk">
           {"talk to me".split("").map((letter, i) => (
-            <span key={i}>{letter}</span>
+            <span key={i} style={{ color }}>
+              {letter}
+            </span>
           ))}
         </Button>
       </div>
@@ -153,11 +155,13 @@ const Button = styled.a({
 
   span: {
     transition: "10ms bounce all",
-    border: "1px solid black",
+    border: "1px solid transparent",
     padding: "1em 0.25em",
     borderRadius: "0px",
-    background: "black",
-    color: "white",
+    // background: "black",
+    // color: "white",
+    background: "transparent",
+    color: "black",
     letterSpacing: "3px",
 
     "&:first-of-type": {
