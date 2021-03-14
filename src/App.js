@@ -93,7 +93,9 @@ export default function App() {
                 "-0.05em",
                 "0.05em",
                 "-0.1em",
-                "0.1em"
+                "0.1em",
+                "1em",
+                "-1em"
               ]);
               return (
                 <span key={i} style={{ position: "relative", top }}>
