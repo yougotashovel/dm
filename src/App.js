@@ -107,7 +107,7 @@ export default function App() {
         </h1>
         <Button href="mailto:hi@danmchugh.co.uk">
           {"talk to me".split("").map((letter, i) => (
-            <span key={i} style={{ color }}>
+            <span key={i} style={{}}>
               {letter}
             </span>
           ))}
@@ -205,7 +205,8 @@ const Button = styled.a({
 
     "&:hover, &:focus": {
       background: "transparent",
-      borderColor: "white"
+      borderColor: "white",
+      color: "white"
     }
   }
 });
