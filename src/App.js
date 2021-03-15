@@ -29,6 +29,7 @@ function getRandomInt(min, max) {
 
 export default function App() {
   const [hover, setHover] = useState(false);
+  const [index, setIndex] = useState(0);
   const toggle = () => setHover(!hover);
 
   const fontFamily = useArray(
@@ -106,7 +107,7 @@ export default function App() {
       {/* <footer style={{ background: colorSimple[color] }} /> */}
       <div>
         <div style={{ opacity: hover ? 1 : 0, transition: "500ms ease all" }}>
-          <Globe color={color} />
+          <Globe color={color} index={index} />
         </div>
         <h1
           style={{ fontFamily, textTransform, fontSize, color }}
@@ -137,7 +138,7 @@ export default function App() {
           onMouseLeave={toggle}
         >
           {"talk to me".split("").map((letter, i) => (
-            <span key={i} style={{}}>
+            <span key={i} onMouseEnter={() => setIndex(i)}>
               {letter}
             </span>
           ))}
@@ -200,7 +201,7 @@ const Wrapper = styled.div({
       // transition: '10000ms ease transform !important, 1000ms ease top !important',
       transition: "0ms ease transform, 10000ms ease top !important",
       transform: "rotate(180deg) scale(4) !important",
-      opacity: 0.25,
+      opacity: 0,
       color: "rgba(0,0,0,0.5)"
     }
   }

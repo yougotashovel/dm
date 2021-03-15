@@ -3,17 +3,30 @@ import { useState, useEffect, useRef } from "react";
 import { Canvas, useFrame, useUpdate } from "react-three-fiber";
 import * as THREE from "three";
 
-const Lemon = ({ color = "orange" }) => {
+const Lemon = ({ index = 0 }) => {
   const mesh = useRef();
+
+  const scales = [
+    [1, 1.1, 1],
+    [2, 1.1, 1],
+    [1, 1.1, 2],
+    [1, 2, 1],
+    [3, 3, 3],
+    [0.5, 0.5, 0.5],
+    [0.25, 2, 2],
+    [4, 0.25, 1],
+    [4, 4, 3],
+    [2, 2, 3]
+  ];
 
   useFrame(() => {
     mesh.current.rotation.x = mesh.current.rotation.y -= 0.01;
   });
 
   return (
-    <mesh ref={mesh} visible scale={[1, 1.1, 1]}>
+    <mesh ref={mesh} visible scale={scales[index]}>
       <sphereBufferGeometry args={[1, 10, 15]} />
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial color={"orange"} />
     </mesh>
   );
 };
@@ -83,7 +96,7 @@ export default (props) => (
       <ambientLight intensity={1} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <Globe {...props} />
-      <Lemon />
+      <Lemon {...props} />
     </Canvas>
   </CanvasWrapper>
 );
