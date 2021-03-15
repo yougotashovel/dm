@@ -201,7 +201,7 @@ const Wrapper = styled.div({
       // transition: '10000ms ease transform !important, 1000ms ease top !important',
       transition: "0ms ease transform, 10000ms ease top !important",
       transform: "rotate(180deg) scale(4) !important",
-      opacity: 0.25,
+      opacity: 0,
       color: "rgba(0,0,0,0.5)"
     }
   }
