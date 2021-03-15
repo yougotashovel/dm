@@ -28,6 +28,7 @@ function getRandomInt(min, max) {
 }
 
 export default function App() {
+  const [index, setIndex] = useState(0);
   const [hover, setHover] = useState(false);
   const toggle = () => setHover(!hover);
 
@@ -106,7 +107,7 @@ export default function App() {
       {/* <footer style={{ background: colorSimple[color] }} /> */}
       <div>
         <div style={{ opacity: hover ? 1 : 0, transition: "500ms ease all" }}>
-          <Globe color={color} />
+          <Globe color={color} index={index} />
         </div>
         <h1
           style={{ fontFamily, textTransform, fontSize, color }}
@@ -137,7 +138,7 @@ export default function App() {
           onMouseLeave={toggle}
         >
           {"talk to me".split("").map((letter, i) => (
-            <span key={i} style={{}}>
+            <span key={i} onMouseEnter={() => setIndex(i)}>
               {letter}
             </span>
           ))}
